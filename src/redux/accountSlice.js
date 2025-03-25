@@ -7,13 +7,15 @@ const initialState = {
   loading: false,
   tasks: [
     {
-      name: "Task 1",
+      id: 1,
+      name: "lorem ipsum sit dolor it amet",
       description: "Description 1",
       completed: false,
       date: 1742853600000,
       priority: "high",
     },
     {
+      id: 2,
       name: "Task 2",
       description: "Description 2",
       completed: false,
@@ -21,6 +23,7 @@ const initialState = {
       priority: "medium",
     },
     {
+      id: 3,
       name: "Task 3",
       description: "Description 3",
       completed: true,
@@ -50,8 +53,14 @@ const accountSlice = createSlice({
     editTask: (state, action) => {
       state.tasks = action.payload;
     },
+    completeTask: (state, action) => {
+      const task = state.tasks.filter((task) => task.id === action.payload)[0];
+      if (task) {
+        Object.assign(task, { completed: !task.completed });
+      }
+    },
     deleteTask: (state, action) => {
-      state.tasks = action.payload;
+      state.tasks = state.tasks.filter((task) => task.id !== action.payload);
     },
     setActiveTab: (state, action) => {
       state.activeTab = action.payload;
@@ -64,6 +73,7 @@ export const {
   logout,
   addTask,
   editTask,
+  completeTask,
   deleteTask,
   setActiveTab,
   setImage,
