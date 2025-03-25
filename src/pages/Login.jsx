@@ -3,6 +3,7 @@ import { Button } from "../components/Button";
 import { useDispatch } from "react-redux";
 import { setUsername, setImage } from "../redux/accountSlice";
 import { useNavigate } from "react-router-dom";
+import { TextInput } from "../components/TextInput";
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -34,22 +35,21 @@ export const Login = () => {
       <form
         onSubmit={handleSubmit}
         className="flex flex-col items-center gap-4 w-full">
-        <h1 className="text-5xl text-amber-500 font-medium">Create account</h1>
-        <input
-          type="text"
+        <h1 className="text-5xl text-amber-500 font-medium mb-4">
+          Create account
+        </h1>
+
+        <TextInput
           value={user}
-          onChange={handleUser}
+          handleChange={handleUser}
           placeholder="Username"
-          className="text-center p-4 text-xl border-amber-500 border-2 font-medium focus:outline-none focus:ring focus:ring-amber-500 text-black input rounded-full"
         />
-        <input
-          type="text"
+        <TextInput
           value={image}
-          onChange={handleImage}
+          handleChange={handleImage}
           placeholder="Image URL"
-          className="text-center p-4 text-xl border-amber-500 border-2 font-medium focus:outline-none focus:ring focus:ring-amber-500 text-black input rounded-full"
         />
-        <Button text="Go to tasks &rarr;" />
+        <Button text="Start tracking your tasks &rarr;" />
       </form>
     </div>
   );
