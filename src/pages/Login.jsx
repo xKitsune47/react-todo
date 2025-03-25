@@ -21,7 +21,6 @@ export const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(user, image);
 
     if (!user) return;
 

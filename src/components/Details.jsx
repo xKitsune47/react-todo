@@ -15,17 +15,14 @@ export const Details = ({ children, title, text }) => {
 
   const handleChange = (e) => {
     e.preventDefault();
-    console.log(query);
 
     if (!query) return;
 
     if (title === "Username") {
-      console.log(query);
       dispatch(setUsername(query));
     }
 
     if (title === "Username") {
-      console.log(query);
       dispatch(setImage(query));
     }
 
