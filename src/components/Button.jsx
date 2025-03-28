@@ -6,7 +6,14 @@ const btnStyle =
 const btnStyleActive =
   "bg-amber-500 p-2 text-center w-full flex items-center justify-center";
 
-export const Button = ({ to, text, active, handleActive, type }) => {
+export const Button = ({
+  to,
+  text,
+  active,
+  handleActive,
+  type,
+  customStyle,
+}) => {
   if (type === "primary") {
     return (
       <Link
@@ -30,7 +37,8 @@ export const Button = ({ to, text, active, handleActive, type }) => {
   }
 
   return (
-    <button className="border-2 border-amber-500 p-2 text-center w-96 mt-8 hover:bg-amber-500 hover:text-white duration-200 font-semibold text-lg rounded-full">
+    <button
+      className={`border-2 border-amber-500 p-2 text-center w-96 mt-8 hover:bg-amber-500 hover:text-white duration-200 font-semibold text-lg rounded-full ${customStyle}`}>
       {text}
     </button>
   );
