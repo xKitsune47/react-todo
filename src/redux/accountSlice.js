@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  username: "owo",
+  username: "test acc",
   image: "https://i.pravatar.cc/320",
   activeTab: "/",
   loading: false,
@@ -30,6 +30,14 @@ const initialState = {
       date: 1742943600000,
       priority: "low",
     },
+    {
+      id: 4,
+      name: "Task 4",
+      description: "",
+      completed: false,
+      date: 1743361200000,
+      priority: "none",
+    },
   ],
 };
 
@@ -48,10 +56,27 @@ const accountSlice = createSlice({
       state.image = action.payload;
     },
     addTask: (state, action) => {
-      state.tasks = action.payload;
+      state.tasks.push({
+        id: state.tasks.length + 1,
+        name: action.payload.taskName,
+        description: action.payload.taskDescription || "",
+        completed: false,
+        date: new Date(action.payload.taskDate).getTime(),
+        priority: action.payload.taskPriority || "low",
+      });
     },
     editTask: (state, action) => {
-      state.tasks = action.payload;
+      const task = state.tasks.filter(
+        (task) => task.id === action.payload.taskId
+      )[0];
+      if (task) {
+        Object.assign(task, {
+          name: action.payload.taskName,
+          description: action.payload.taskDescription,
+          date: new Date(action.payload.taskDate).getTime(),
+          priority: action.payload.taskPriority,
+        });
+      }
     },
     completeTask: (state, action) => {
       const task = state.tasks.filter((task) => task.id === action.payload)[0];
